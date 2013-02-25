@@ -5,7 +5,7 @@
  *  - https://github.com/dmajda/pegjs
  */
 
-start                       = query
+start                       = url
 
 /*
  * Basic cons.
@@ -367,3 +367,68 @@ query                       = list:expList {
                                     }
                                     return result;
                                 }
+
+// end: OData query
+
+/*
+ * OData path
+ */
+
+predicate                   = n:identifier "=" v:primitiveLiteral {
+                                  return {
+                                      type: 'property',
+                                      name: n,
+                                      value: v
+                                  };
+                              }
+
+predicateList               = e:predicate "," WSP? l:predicateList {
+                                  return [e].concat(l);
+                              } /
+                              e:predicate {
+                                  return [e];
+                              } /
+                              v:primitiveLiteral {
+                                  return [{
+                                      type: 'literal',
+                                      value: v
+                                  }];
+                              }
+
+resource                    = n:identifier "(" p:predicateList ")" {
+                                  return {
+                                      name: n,
+                                      predicates: p
+                                  };
+                              } /
+                              n:identifier {
+                                  return {
+                                      name: n
+                                  };
+                              }
+
+path                        = e:resource "/" l:path {
+                                  return [e].concat(l);
+                              } /
+                              e:resource {
+                                  return [e];
+                              }
+
+// end: OData path
+
+/*
+ * OData url
+ */
+
+url                         = p:path "?" q:query {
+                                  q.$path = p;
+                                  return q;
+                              } /
+                              p:path {
+                                  return {$path: p};
+                              } /
+                              q:query {
+                                  return q;
+                              }
+
+// end: OData path
