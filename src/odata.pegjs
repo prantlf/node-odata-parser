@@ -278,7 +278,7 @@ filterExpr                  =
                                 }
                               }
 
-booleanFunctions2Args       = "substringof" / "endswith" / "startswith" / "indexof" / "IsOf"
+booleanFunctions2Args       = "substringof" / "endswith" / "startswith" / "IsOf"
 
 booleanFunc                 =  f:booleanFunctions2Args "(" arg0:part "," WSP? arg1:part ")" {
                                     return {
@@ -295,7 +295,7 @@ booleanFunc                 =  f:booleanFunctions2Args "(" arg0:part "," WSP? ar
                                     }
                                 }
 
-otherFunctions1Arg          = "tolower" / "toupper" / "trim" / "len" / "year" /
+otherFunctions1Arg          = "tolower" / "toupper" / "trim" / "length" / "year" /
                               "month" / "day" / "hour" / "minute" / "second" /
                               "round" / "floor" / "ceiling"
 
