@@ -438,6 +438,11 @@ resource                    = n:identifier "(" p:predicateList ")" {
                                   return {
                                       name: n
                                   };
+                              } /
+                              v:("$value" / "$count") {
+                                  return {
+                                      name: v
+                                  };
                               }
 
 path                        = e:resource "/" l:path {
