@@ -236,6 +236,13 @@ describe('odata path parser grammar', function () {
         assert.equal(ast.$path[1].name, 'ContactName');
     });
 
+    it('should parse resources starting with $', function () {
+        var ast = parser.parse('Customers(1)/$value');
+        assert.equal(ast.$path[1].name, '$value');
+        var ast = parser.parse('Customers/$count');
+        assert.equal(ast.$path[1].name, '$count');
+    });
+
 });
 
 describe('odata path and query parser grammar', function () {
