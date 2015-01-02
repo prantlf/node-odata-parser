@@ -190,6 +190,20 @@ describe('odata.parser grammar', function () {
         assert.equal(ast.$expand[1], 'Products/Suppliers');
     });
 
+    it('should parse $count okay', function () {
+        var ast = parser.parse('$count=true');
+        assert.equal(ast.$count, 'true');
+
+        ast = parser.parse('$count=false');
+        assert.equal(ast.$count, 'false');
+
+        ast = parser.parse('$count=');
+        assert.equal(ast.error, 'invalid $count parameter');
+
+        ast = parser.parse('$count=test');
+        assert.equal(ast.error, 'invalid $count parameter');
+    });
+
     // it('xxxxx', function () {
     //     var ast = parser.parse("$top=2&$filter=Date gt datetime'2012-09-27T21:12:59'");
 
