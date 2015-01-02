@@ -291,6 +291,20 @@ describe('odata query parser grammar', function () {
         assert.equal(ast.error, 'invalid $format parameter');
     });
 
+    it('should parse $count okay', function () {
+        var ast = parser.parse('test?$count=true');
+        assert.equal(ast.$count, 'true');
+
+        ast = parser.parse('test?$count=false');
+        assert.equal(ast.$count, 'false');
+
+        ast = parser.parse('test?$count=');
+        assert.equal(ast.error, 'invalid $count parameter');
+
+        ast = parser.parse('test?$count=test');
+        assert.equal(ast.error, 'invalid $count parameter');
+    });
+
     // it('xxxxx', function () {
     //     var ast = parser.parse("$top=2&$filter=Date gt datetime'2012-09-27T21:12:59'");
 

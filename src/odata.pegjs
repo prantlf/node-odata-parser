@@ -206,6 +206,10 @@ format                      =   "$format=" v:.+ { return {'$format': v.join('') 
 inlinecount                 =   "$inlinecount=" v:("allpages" / "none") { return {'$inlinecount': v }; }
                             /   "$inlinecount=" .* { return {"error": 'invalid $inlinecount parameter'}; }
 
+//$count
+count                       =   "$count=" v:("true" / "false") { return {'$count': v }; }
+                            /   "$count=" .* { return {"error": 'invalid $count parameter'}; }
+
 // $orderby
 orderby                     =   "$orderby=" list:orderbyList { 
                                     return { "$orderby": list }; }
@@ -383,6 +387,7 @@ exp                         =
                                 top /
                                 format /
                                 inlinecount /
+                                count /
                                 select /
                                 unsupported
 
