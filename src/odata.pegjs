@@ -207,7 +207,7 @@ inlinecount                 =   "$inlinecount=" v:("allpages" / "none") { return
                             /   "$inlinecount=" .* { return {"error": 'invalid $inlinecount parameter'}; }
 
 //$count
-count                       =   "$count=" v:("true" / "false") { return {'$count': v }; }
+count                       =   "$count=" v:("true" / "false") { return {'$count': v === 'true' }; }
                             /   "$count=" .* { return {"error": 'invalid $count parameter'}; }
 
 // $orderby
