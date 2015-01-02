@@ -283,6 +283,14 @@ describe('odata query parser grammar', function () {
         assert.equal(ast.error, 'invalid $inlinecount parameter');
     });
 
+    it('should parse $format okay', function () {
+        var ast = parser.parse('$format=application/atom+xml');
+        assert.equal(ast.$format, 'application/atom+xml');
+
+        ast = parser.parse('$format=');
+        assert.equal(ast.error, 'invalid $format parameter');
+    });
+
     // it('xxxxx', function () {
     //     var ast = parser.parse("$top=2&$filter=Date gt datetime'2012-09-27T21:12:59'");
 
