@@ -192,10 +192,10 @@ describe('odata.parser grammar', function () {
 
     it('should parse $count okay', function () {
         var ast = parser.parse('$count=true');
-        assert.equal(ast.$count, 'true');
+        assert.equal(ast.$count, true);
 
         ast = parser.parse('$count=false');
-        assert.equal(ast.$count, 'false');
+        assert.equal(ast.$count, false);
 
         ast = parser.parse('$count=');
         assert.equal(ast.error, 'invalid $count parameter');
