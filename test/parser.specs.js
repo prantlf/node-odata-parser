@@ -208,7 +208,7 @@ describe('odata query parser grammar', function () {
       });
     });
 
-    ['indexof', 'concat', 'substring', 'replace'].forEach(function (func) {
+    ['indexof', 'concat', 'substring', 'replace', 'contains'].forEach(function (func) {
       it('should parse ' + func + ' $filter', function () {
         var ast = parser.parse("$filter=" + func + "('haystack', needle) eq 'test'");
 
