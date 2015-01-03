@@ -295,6 +295,17 @@ booleanFunc                 =  f:booleanFunctions2Args "(" arg0:part "," WSP? ar
                                     }
                                 }
 
+otherFunctions0Arg          = "now" / "mindatetime" / "maxdatetime" /
+                              "fractionalseconds"
+
+otherFunc0                  = f:otherFunctions0Arg "(" WSP? ")" {
+                                  return {
+                                      type: "functioncall",
+                                      func: f,
+                                      args: []
+                                  }
+                              }
+
 otherFunctions1Arg          = "tolower" / "toupper" / "trim" / "length" / "year" /
                               "month" / "day" / "hour" / "minute" / "second" /
                               "round" / "floor" / "ceiling"
@@ -342,6 +353,7 @@ cond                        = a:part WSP op:op WSP b:part {
 part                        =   booleanFunc /
                                 otherFunc2 /
                                 otherFunc1 /
+                                otherFunc0 /
                                 l:primitiveLiteral {
                                     return {
                                         type: 'literal',
