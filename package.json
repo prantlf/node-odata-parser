@@ -1,22 +1,25 @@
 {
   "name": "odata-parser",
-  "version": "1.0.0",
+  "version": "1.4.1",
   "description": "OData query string parser",
   "main": "lib/index.js",
   "scripts": {
-    "test":       "rm -f lib/odata-parser.js && npm run-script prepublish && mocha -R spec",
+    "test": "rm -f lib/odata-parser.js && npm run-script prepublish && mocha -R spec",
     "prepublish": "pegjs src/odata.pegjs lib/odata-parser.js"
   },
   "dependencies": {},
   "devDependencies": {
     "pegjs": "0.7.0",
-    "mocha": "*"
+    "mocha": "2.1.0"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/auth0/node-odata-parser"
+  },
   "keywords": [
     "odata",
     "parser"
   ],
-  "author": "qraftlabs",
+  "author": "auth0",
   "license": "MIT"
 }
